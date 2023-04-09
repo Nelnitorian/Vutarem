@@ -1,0 +1,1 @@
+En esta carpeta trabajará Juanjo la parte de base de datos de java.
