@@ -1,8 +1,6 @@
 package com.vutarem.common;
 
 public class FabricaDni {
-    public FabricaDni(){
-    }
 
     public static Dni creaDni(String dni_str) {
         Dni dni = null;

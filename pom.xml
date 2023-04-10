@@ -2,25 +2,73 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.postgresql</groupId>
-		<artifactId>postgresql-parent</artifactId>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
 	<groupId>com.vutarem</groupId>
 	<artifactId>vutarem</artifactId>
 	<version>0.0.1</version>
 	<name>vutarem</name>
 	<description>Proyecto de grupo para SDySW</description>
+
+	<build>
+		<!-- <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.vutarem.Main</mainClass>
+							<arguments>
+								<argument>foo</argument>
+								<argument>bar</argument>
+							</arguments>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins> -->
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>com.vutarem.common.Main</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+			</plugin>
+		</plugins>
+	</build>
+
 	<properties>
 		<java.version>17</java.version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<!-- <version>9.3-1100-jdbc41</version> -->
+			<version>9.3-1100-jdbc41</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.3.1</version>
+		</dependency>
+
 	</dependencies>
 
 </project>

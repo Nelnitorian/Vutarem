@@ -1,7 +1,7 @@
-package com.vutarem.common;
+// package com.vutarem.common;
 
-public class Candidato {
-    private String id;
-    private String nombre;
+// public class Candidato {
+//     private String id;
+//     private String nombre;
     
-}
+// }
