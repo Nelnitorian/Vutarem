@@ -6,13 +6,15 @@ import java.sql.SQLException;
 
 public class Conexion {
     
-    static protected String DATABASE = "admin";
+    protected static final String DATABASE = "admin";
+    private static final String USER = "admin";
+    private static final String PASSWORD = "admin1234";
 
     public Conexion(){
     }
 
     static public Connection conecta() throws SQLException{
-        Connection conn = Conexion.connect(DATABASE, "admin", "admin1234");
+        Connection conn = Conexion.connect(DATABASE, Conexion.USER, Conexion.PASSWORD);
         return conn;
     }
     

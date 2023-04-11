@@ -8,4 +8,9 @@ public class Dni {
     public String getDni() {
         return dni;
     }
+
+    @Override
+    public String toString(){
+        return dni.toString();
+    }
 }

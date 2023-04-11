@@ -18,45 +18,104 @@ public class VotanteDAO {
     public VotanteDAO(){
     }
 
-    // public void crea(Votante persona) throws SQLException{
-    //     String QUERY_CREA = "SELECT * FROM "+TABLE+" WHERE apellidos = ? ";
+    public static void crea(Votante persona) throws SQLException{
+        String QUERY_CREA = "INSERT INTO "+TABLE+" (dni, nombre, ha_votado) VALUES (?, ?, ?)";
 
-    //     Connection conn = null;
-    //     ResultSet rs = null;
-    //     PreparedStatement st = null;
+        Connection conn = null;
+        int rs = 0;
+        PreparedStatement st = null;
 
-    //     conn = Conexion.conecta();
-    //     st = conn.prepareStatement(QUERY_CREA);
-    //     st.setString(1, apellidos);
+        conn = Conexion.conecta();
+        st = conn.prepareStatement(QUERY_CREA);
+        st.setString(1, persona.getDni().toString());
+        st.setString(2, persona.getNombre());
+        st.setBoolean(3, persona.isHa_votado());
+        rs = st.executeUpdate();
 
-    //     rs = st.executeQuery();
-
-    //     try {
-    //         conn.close();
-    //         st.close();
-    //         rs.close();
-    //     } catch (Exception e){
-    //         // Ignore
-    //     }
-        
-    // }
-
-    public void borra(String dni) throws SQLException{
-        final String QUERY_BORRA = "SELECT * FROM "+TABLE+" WHERE apellidos = ? ";
-
-    }
-
-    public void borraTodos() throws SQLException{
-
-    }
-
-    public void actualiza(String dni, boolean haVotado) throws SQLException{
-        final String QUERY_ACTUALIZA = "SELECT * FROM "+TABLE+" WHERE apellidos = ? ";
+        try {
+            conn.close();
+            st.close();
+        } catch (Exception e){
+            // Ignore
+        }
         
     }
 
-    public Votante lee(String dni) throws SQLException{
-        final String QUERY_LEE = "SELECT * FROM "+TABLE+" WHERE apellidos = ? ";
+    public static void borra(String dni) throws SQLException{
+        final String QUERY_BORRA = "DELETE FROM "+TABLE+" WHERE dni=?";
+
+        Connection conn = null;
+        int rs = 0;
+        PreparedStatement st = null;
+
+        conn = Conexion.conecta();
+        st = conn.prepareStatement(QUERY_BORRA);
+        st.setString(1, dni);
+
+        rs = st.executeUpdate();
+
+        try {
+            conn.close();
+            st.close();
+        } catch (Exception e){
+            // Ignore
+        }
+
+        return;
+
+    }
+
+    public static void borraTodos() throws SQLException{
+        final String QUERY_BORRA_TODOS = "DELETE FROM "+TABLE;
+
+        Connection conn = null;
+        int rs = 0;
+        PreparedStatement st = null;
+
+        conn = Conexion.conecta();
+        st = conn.prepareStatement(QUERY_BORRA_TODOS);
+
+        rs = st.executeUpdate();
+
+        try {
+            conn.close();
+            st.close();
+        } catch (Exception e){
+            // Ignore
+        }
+
+        return;
+
+    }
+
+    public static void actualiza(String dni, boolean ha_votado) throws SQLException{
+        final String QUERY_ACTUALIZA = "UPDATE "+TABLE+" SET ha_votado = ? WHERE dni = ?";
+
+        Connection conn = null;
+        int rs = 0;
+        PreparedStatement st = null;
+
+        conn = Conexion.conecta();
+        st = conn.prepareStatement(QUERY_ACTUALIZA);
+        st.setBoolean(1, ha_votado);
+        st.setString(2, dni);
+
+        rs = st.executeUpdate();
+
+        try {
+            conn.close();
+            st.close();
+        } catch (Exception e){
+            // Ignore
+        }
+
+        return;
+
+        
+    }
+
+    public static Votante lee(String dni) throws SQLException{
+        final String QUERY_LEE = "SELECT * FROM "+TABLE+" WHERE dni = ? ";
 
         Connection conn = null;
         ResultSet rs = null;
@@ -86,7 +145,7 @@ public class VotanteDAO {
         return votante;
     }
 
-    public List<Votante> leeTodos() throws SQLException{
+    public static List<Votante> leeTodos() throws SQLException{
         final String QUERY_LEE_TODOS = "SELECT * FROM "+TABLE;
 
         Connection conn = null;
