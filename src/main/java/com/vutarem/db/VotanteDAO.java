@@ -12,25 +12,27 @@ import com.vutarem.common.FabricaDni;
 import java.util.List;
 import java.util.ArrayList;
 
-public class VotanteDAO {
+public class VotanteDAO implements IVotanteDAO{
     private static final String TABLE = "votantes";
 
     public VotanteDAO(){
     }
 
-    public static void crea(Votante persona) throws SQLException{
-        String QUERY_CREA = "INSERT INTO "+TABLE+" (dni, nombre, ha_votado) VALUES (?, ?, ?)";
+    public void crea(Votante persona) throws SQLException{
+        String QUERY_CREA = "INSERT INTO "+TABLE+" (dni, nombre, ha_votado, contrasenia) VALUES (?, ?, ?, ?)";
 
         Connection conn = null;
-        int rs = 0;
         PreparedStatement st = null;
 
         conn = Conexion.conecta();
         st = conn.prepareStatement(QUERY_CREA);
+
         st.setString(1, persona.getDni().toString());
         st.setString(2, persona.getNombre());
         st.setBoolean(3, persona.isHa_votado());
-        rs = st.executeUpdate();
+        st.setString(4, persona.getContrasenia());
+        
+        st.executeUpdate();
 
         try {
             conn.close();
@@ -41,18 +43,17 @@ public class VotanteDAO {
         
     }
 
-    public static void borra(String dni) throws SQLException{
+    public void borra(String dni) throws SQLException{
         final String QUERY_BORRA = "DELETE FROM "+TABLE+" WHERE dni=?";
 
         Connection conn = null;
-        int rs = 0;
         PreparedStatement st = null;
 
         conn = Conexion.conecta();
         st = conn.prepareStatement(QUERY_BORRA);
         st.setString(1, dni);
 
-        rs = st.executeUpdate();
+        st.executeUpdate();
 
         try {
             conn.close();
@@ -65,34 +66,32 @@ public class VotanteDAO {
 
     }
 
-    public static void borraTodos() throws SQLException{
-        final String QUERY_BORRA_TODOS = "DELETE FROM "+TABLE;
+    // public void borraTodos() throws SQLException{
+    //     final String QUERY_BORRA_TODOS = "DELETE FROM "+TABLE;
 
-        Connection conn = null;
-        int rs = 0;
-        PreparedStatement st = null;
+    //     Connection conn = null;
+    //     PreparedStatement st = null;
 
-        conn = Conexion.conecta();
-        st = conn.prepareStatement(QUERY_BORRA_TODOS);
+    //     conn = Conexion.conecta();
+    //     st = conn.prepareStatement(QUERY_BORRA_TODOS);
 
-        rs = st.executeUpdate();
+    //     st.executeUpdate();
 
-        try {
-            conn.close();
-            st.close();
-        } catch (Exception e){
-            // Ignore
-        }
+    //     try {
+    //         conn.close();
+    //         st.close();
+    //     } catch (Exception e){
+    //         // Ignore
+    //     }
 
-        return;
+    //     return;
 
-    }
+    // }
 
-    public static void actualiza(String dni, boolean ha_votado) throws SQLException{
+    public void actualiza(String dni, boolean ha_votado) throws SQLException{
         final String QUERY_ACTUALIZA = "UPDATE "+TABLE+" SET ha_votado = ? WHERE dni = ?";
 
         Connection conn = null;
-        int rs = 0;
         PreparedStatement st = null;
 
         conn = Conexion.conecta();
@@ -100,7 +99,7 @@ public class VotanteDAO {
         st.setBoolean(1, ha_votado);
         st.setString(2, dni);
 
-        rs = st.executeUpdate();
+        st.executeUpdate();
 
         try {
             conn.close();
@@ -114,14 +113,14 @@ public class VotanteDAO {
         
     }
 
-    public static Votante lee(String dni) throws SQLException{
+    public Votante lee(String dni) throws SQLException{
         final String QUERY_LEE = "SELECT * FROM "+TABLE+" WHERE dni = ? ";
 
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement st = null;
 
-        Votante votante = null;
+        Votante vot = null;
 
         conn = Conexion.conecta();
         st = conn.prepareStatement(QUERY_LEE);
@@ -130,7 +129,7 @@ public class VotanteDAO {
         rs = st.executeQuery();
 
         while (rs.next()) {
-            votante = new Votante(FabricaDni.creaDni(rs.getString(1)), rs.getString(2), rs.getBoolean(3));
+            vot = new Votante(FabricaDni.creaDni(rs.getString(1)), rs.getString(2), rs.getBoolean(3), rs.getString(4));
             break;
         }
 
@@ -142,17 +141,17 @@ public class VotanteDAO {
             // Ignore
         }
 
-        return votante;
+        return vot;
     }
 
-    public static List<Votante> leeTodos() throws SQLException{
+    public List<Votante> leeTodos() throws SQLException{
         final String QUERY_LEE_TODOS = "SELECT * FROM "+TABLE;
 
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement st = null;
 
-        Votante votante = null;
+        Votante vot = null;
         ArrayList<Votante> lst = new ArrayList<Votante>();
 
         conn = Conexion.conecta();
@@ -161,8 +160,8 @@ public class VotanteDAO {
         rs = st.executeQuery();
 
         while (rs.next()) {
-            votante = new Votante(FabricaDni.creaDni(rs.getString(1)), rs.getString(2), rs.getBoolean(3));
-            lst.add(votante);
+            vot = new Votante(FabricaDni.creaDni(rs.getString(1)), rs.getString(2), rs.getBoolean(3), rs.getString(4));
+            lst.add(vot);
         }
 
         try {
