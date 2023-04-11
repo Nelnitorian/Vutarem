@@ -14,7 +14,3 @@ if (contrasenia.equals(vot.getContrasenia())){
     // Login fracasado
 }
 ```
-
-TODO: 
-1. Interfaz de VotanteDAO (llamada IVotanteDAO). 
-2. Candidato (db y bean), CandidatoDAO y ICandidatoDAO.
