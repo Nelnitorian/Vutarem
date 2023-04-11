@@ -2,7 +2,7 @@ package com.vutarem.common;
 
 import java.sql.SQLException;
 
-import org.junit.jupiter.api.AfterAll;
+// import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
