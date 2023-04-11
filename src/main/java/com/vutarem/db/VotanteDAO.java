@@ -66,28 +66,6 @@ public class VotanteDAO implements IVotanteDAO{
 
     }
 
-    // public void borraTodos() throws SQLException{
-    //     final String QUERY_BORRA_TODOS = "DELETE FROM "+TABLE;
-
-    //     Connection conn = null;
-    //     PreparedStatement st = null;
-
-    //     conn = Conexion.conecta();
-    //     st = conn.prepareStatement(QUERY_BORRA_TODOS);
-
-    //     st.executeUpdate();
-
-    //     try {
-    //         conn.close();
-    //         st.close();
-    //     } catch (Exception e){
-    //         // Ignore
-    //     }
-
-    //     return;
-
-    // }
-
     public void actualiza(String dni, boolean ha_votado) throws SQLException{
         final String QUERY_ACTUALIZA = "UPDATE "+TABLE+" SET ha_votado = ? WHERE dni = ?";
 
