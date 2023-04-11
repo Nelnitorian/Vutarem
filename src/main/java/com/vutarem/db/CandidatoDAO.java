@@ -18,7 +18,7 @@ public class CandidatoDAO implements ICandidatoDAO{
     }
 
     public void crea(Candidato cand) throws SQLException{
-        String QUERY_CREA = "INSERT INTO "+TABLE+" (nombre, partido, votos) VALUES (?, ?, ?)";
+        final String QUERY_CREA = "INSERT INTO "+TABLE+" (nombre, partido, votos) VALUES (?, ?, ?)";
 
         Connection conn = null;
         PreparedStatement st = null;
@@ -61,7 +61,6 @@ public class CandidatoDAO implements ICandidatoDAO{
         }
 
         return;
-
     }
 
     public void vota(int id) throws SQLException{
@@ -146,5 +145,37 @@ public class CandidatoDAO implements ICandidatoDAO{
         }
 
         return lst;
+    }
+
+    public int leeId(String nombre, String partido) throws SQLException{
+        final String QUERY_LEE = "SELECT * FROM "+TABLE+" WHERE nombre = ? AND partido = ?";
+
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement st = null;
+
+        int id = 0;
+
+        conn = Conexion.conecta();
+        st = conn.prepareStatement(QUERY_LEE);
+        st.setString(1, nombre);
+        st.setString(2, partido);
+
+        rs = st.executeQuery();
+
+        while (rs.next()) {
+            id = rs.getInt(1);
+            break;
+        }
+
+        try {
+            conn.close();
+            st.close();
+            rs.close();
+        } catch (Exception e){
+            // Ignore
+        }
+
+        return id;
     }
 }

@@ -17,4 +17,6 @@ public interface ICandidatoDAO {
     public Candidato lee(int id) throws SQLException;
 
     public List<Candidato> leeTodos() throws SQLException;
+
+    public int leeId(String nombre, String partido) throws SQLException;
 }

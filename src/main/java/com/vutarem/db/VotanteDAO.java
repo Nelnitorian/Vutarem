@@ -19,7 +19,7 @@ public class VotanteDAO implements IVotanteDAO{
     }
 
     public void crea(Votante persona) throws SQLException{
-        String QUERY_CREA = "INSERT INTO "+TABLE+" (dni, nombre, ha_votado, contrasenia) VALUES (?, ?, ?, ?)";
+        final String QUERY_CREA = "INSERT INTO "+TABLE+" (dni, nombre, ha_votado, contrasenia) VALUES (?, ?, ?, ?)";
 
         Connection conn = null;
         PreparedStatement st = null;
