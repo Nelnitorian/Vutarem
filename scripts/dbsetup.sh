@@ -1,7 +1,7 @@
 # Se comprueba si el gesto de bases de datos está insalado
 status=$(service postgresql status)
 
-if [[ status == *"Unit postgradawd.service could not be found."* ]]; then
+if [[ status == *"Unit postgresql.service could not be found."* ]]; then
     echo "Postgresql no está instalado. Intentando instalarlo..."
     sudo apt-get install postgresql -y
 else
