@@ -11,6 +11,6 @@ public class FabricaDni {
     }
 
     private static boolean dniValido(String dni){
-        return dni.matches("\\d{8}[A-HJ-NP-TV-Z]");
+        return dni.matches("\\d{8}[A-Z]");
     }
 }

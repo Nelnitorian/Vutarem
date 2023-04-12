@@ -1,12 +1,17 @@
 DROP TABLE IF EXISTS votantes;
-CREATE TABLE votantes (dni VARCHAR(9) PRIMARY KEY, nombre VARCHAR(50) NOT NULL, ha_votado BOOLEAN NOT NULL, contrasenia VARCHAR(20) NOT NULL);
+CREATE TABLE votantes (
+    dni VARCHAR(9) PRIMARY KEY, 
+    nombre VARCHAR(50) NOT NULL, 
+    ha_votado BOOLEAN NOT NULL, 
+    contrasenia VARCHAR(20) NOT NULL
+);
 
 INSERT INTO votantes (dni, nombre, ha_votado, contrasenia) VALUES 
-    ('12345678A', 'Juan Pérez', true, 'juanpi14'),
+    ('12345678A', 'Juan Pérez', false, 'juanpi14'),
     ('87654321B', 'María Gómez', false, 'magodefuego291'),
-    ('11111111C', 'Pedro García', true, '11st1ke11'),
+    ('11111111C', 'Pedro García', false, '11st1ke11'),
     ('22222222D', 'Ana Martínez', false, 'bluewisdomb4g'),
-    ('33333333E', 'Luisa Sánchez', true, 'luismi142');
+    ('33333333E', 'Luisa Sánchez', false, 'luismi142');
 
 DROP TABLE IF EXISTS candidatos;
 CREATE TABLE candidatos (

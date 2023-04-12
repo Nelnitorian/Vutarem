@@ -1,7 +1,5 @@
-# Se comprueba si el gesto de bases de datos está insalado
-status=$(service postgresql status)
-
-if [[ status == *"Unit postgresql.service could not be found."* ]]; then
+# Se comprueba si el gestor de bases de datos está insalado
+if ! systemctl is-active --quiet postgresql; then
     echo "Postgresql no está instalado. Intentando instalarlo..."
     sudo apt-get install postgresql -y
 else
