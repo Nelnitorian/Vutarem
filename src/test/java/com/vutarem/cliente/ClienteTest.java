@@ -1,11 +1,7 @@
 package com.vutarem.cliente;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
-import com.vutarem.common.Candidato;
 
 
 public class ClienteTest {
@@ -19,7 +15,7 @@ public class ClienteTest {
         assertDoesNotThrow(() -> {
                 
             // Obtener lista de candidatos
-            List<Candidato> candidatos = Cliente.obtenerCandidatos();
+            Cliente.obtenerCandidatos();
     
             // Votar por un candidato
             Cliente cliente = new Cliente(dni, password);
