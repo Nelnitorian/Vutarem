@@ -4,7 +4,7 @@ import java.rmi.*;
 import java.rmi.server.*;
 
 class Servidor {
-    static public void main () {
+    static public void main (String args[]) {
 	if (System.getSecurityManager() == null) {
             System.setSecurityManager(new RMISecurityManager());
         }
