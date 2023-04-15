@@ -17,13 +17,12 @@ public class ClienteTest {
         String dni = "12345678A";
         String password = "password";
         assertDoesNotThrow(() -> {
-        
-            Cliente cliente = new Cliente(dni, password);
                 
             // Obtener lista de candidatos
-            List<Candidato> candidatos = cliente.obtenerCandidatos();
+            List<Candidato> candidatos = Cliente.obtenerCandidatos();
     
             // Votar por un candidato
+            Cliente cliente = new Cliente(dni, password);
             cliente.votar(1);
             
 
