@@ -52,8 +52,8 @@ public class VotanteDAOTest {
         assertDoesNotThrow(() -> {
             IVotanteDAO votdao = new VotanteDAO();
             votdao.crea(persona);
-            votdao.borra(dni_str);
             assertTrue(votdao.leeTodos().size()>0);
+            votdao.borra(dni_str);
         });  
     }
 }
