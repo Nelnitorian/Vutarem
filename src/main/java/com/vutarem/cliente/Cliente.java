@@ -22,13 +22,18 @@ public class Cliente {
 
     public boolean votar (int idCandidato) throws RemoteException, NotBoundException, MalformedURLException {
         //Se envía al srv las credenciales y el id del candidato indicado en la interfaz gráfica por parte del votante
-        Servicio srv = (Servicio) Naming.lookup("//" + HOST + ":" + REGISTRO + "/Vutarem");
+        Servicio srv = conexion_srv();
         return srv.votar(dni, password, idCandidato);
     }
 
     public static List<Candidato> obtenerCandidatos () throws RemoteException, NotBoundException, MalformedURLException {
         //Petición al srv para obtener los datos de todos los candidatos
-        Servicio srv = (Servicio) Naming.lookup("//" + HOST + ":" + REGISTRO + "/Vutarem");
+        Servicio srv = conexion_srv();
         return srv.obtenerCandidatos();
+    }
+
+    private static Servicio conexion_srv() throws MalformedURLException, RemoteException, NotBoundException {
+        //Conexión con el servidor
+        return (Servicio) Naming.lookup("//" + HOST + ":" + REGISTRO + "/Vutarem");
     }
 }
