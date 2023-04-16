@@ -16,14 +16,24 @@
 				<version>1.2.1</version>
 				<executions>
 					<execution>
+						<id>gui</id>
 						<goals>
 							<goal>java</goal>
 						</goals>
+						<configuration>
+							<mainClass>com.vutarem.gui</mainClass>
+						</configuration>
+					</execution>
+					<execution>
+						<id>sv</id>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<mainClass>com.vutarem.servidor.Servidor</mainClass>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<mainClass>com.vutarem.common.Main</mainClass>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
