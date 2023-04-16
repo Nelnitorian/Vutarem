@@ -20,10 +20,10 @@ public class Cliente {
         this.password = password;
     }
 
-    public void votar (int idCandidato) throws RemoteException, NotBoundException, MalformedURLException {
+    public boolean votar (int idCandidato) throws RemoteException, NotBoundException, MalformedURLException {
         //Se envía al srv las credenciales y el id del candidato indicado en la interfaz gráfica por parte del votante
         Servicio srv = (Servicio) Naming.lookup("//" + HOST + ":" + REGISTRO + "/Vutarem");
-        srv.votar(dni, password, idCandidato);
+        return srv.votar(dni, password, idCandidato);
     }
 
     public static List<Candidato> obtenerCandidatos () throws RemoteException, NotBoundException, MalformedURLException {

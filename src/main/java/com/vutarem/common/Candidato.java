@@ -1,6 +1,8 @@
 package com.vutarem.common;
 
-public class Candidato {
+import java.io.Serializable;
+
+public class Candidato implements Serializable{
     
     private int id = 0;
     private String nombre = null;

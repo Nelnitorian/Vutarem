@@ -9,7 +9,8 @@ Para ejecutar los tests, usar:
 mvn test
 ```
 
-Para ejecutar el código, modificar el pom.xml para cambiar la clase principal. Luego, ejecutar:
+Para ejecutar el código, ejecutar
 ```
-mvn exec:java
+bash run.sh
 ```
+Importante estar en la carpeta raíz del proyecto.

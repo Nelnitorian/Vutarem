@@ -1,6 +1,9 @@
 package com.vutarem.common;
 
-public class Votante {
+import java.io.Serializable;
+
+public class Votante implements Serializable{
+    
     private Dni dni = null;
     private String nombre = null;
     private boolean ha_votado = false;

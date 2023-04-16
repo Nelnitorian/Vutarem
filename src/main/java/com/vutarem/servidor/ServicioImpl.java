@@ -31,7 +31,7 @@ class ServicioImpl extends UnicastRemoteObject implements Servicio{
 	}
 	havotado = vot.isHa_votado();
 	contra = vot.getContrasenia();
-	if(havotado == true || contra != contrasenia){
+	if(havotado == true || !contra.equals(contrasenia)){
 	    correcto = false;
 	    return false;
 	}
@@ -45,10 +45,47 @@ class ServicioImpl extends UnicastRemoteObject implements Servicio{
 	    return true;
 	}
 	}catch (Exception e){
-            // Ignore
+            e.printStackTrace();
         }
 	return false;
     }
+
+
+
+    // public boolean votar(String dni, String contrasenia, int candidato) throws RemoteException {
+
+	// 	CandidatoDAO candidao = new CandidatoDAO();
+	// 	VotanteDAO votdao = new VotanteDAO();
+	// 	Votante vot;
+	// 	boolean havotado;
+	// 	String contra;
+	
+	// 	try{
+	// 		vot = votdao.lee(dni);
+
+	// 		havotado = vot.isHa_votado();
+	// 		contra = vot.getContrasenia();
+	// 		if(havotado == true || contra != contrasenia){
+	// 			correcto = false;
+	// 			return false;
+	// 		}
+	
+	// 		if(candidao.lee(candidato) == null){
+	// 			correcto = false;
+	// 		}
+	// 		if(correcto = true){
+	// 			candidao.vota(candidato);
+	// 			votdao.actualiza(dni, true);
+	// 			return true;
+	// 		}
+	// 	}catch (NullPointerException e){
+	// 		// ignore
+	// 		e.printStackTrace();
+	// 	}catch (Exception e){
+	// 		e.printStackTrace();
+	// 	}
+	// 	return false;
+	// }
 
     public List<Candidato> obtenerCandidatos() throws RemoteException{
 
