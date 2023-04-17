@@ -4,9 +4,9 @@ PWD=$(pwd)
 mvn clean compile package
 
 # Se inicializa la base de datos
-gnome-terminal -- bash -c 'cd $PWD/scripts && bash dbinit.sh'
-
-sleep 1
+cd scripts
+bash dbinit.sh
+cd ..
 
 #Se lanza rmi
 gnome-terminal -- bash -c 'cd $PWD/target/classes && rmiregistry -J-Djava.net.preferIPv4Stack=true 54321'
